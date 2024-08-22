@@ -1,0 +1,10 @@
+managedbeans\ProdutoMB.class
+dao\PassivationCapable.class
+dao\SetorDAO.class
+dao\ProdutoDAO.class
+model\Produto.class
+converters\SetorConverter.class
+utils\EntityManagerProducer.class
+model\Setor.class
+managedbeans\SetorMB.class
+dao\GenericDAO.class

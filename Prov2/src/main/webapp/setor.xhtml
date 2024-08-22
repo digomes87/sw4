@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Cadastro de Setores</title>
+</h:head>
+
+<h:body>
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Nome:" />
+            <h:inputText value="#{setorMB.setor.nome}" />
+            <h:outputLabel value="Margem de Lucro:" />
+            <h:inputText value="#{setorMB.setor.margemLucro}" />
+            <h:commandButton value="Salvar" action="#{setorMB.salvar}" />
+        </h:panelGrid>
+    </h:form>
+
+    <h:dataTable value="#{setorMB.setores}" var="setor">
+        <h:column>
+            <f:facet name="header">Nome</f:facet>
+            #{setor.nome}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Margem de Lucro</f:facet>
+            #{setor.margemLucro}%
+        </h:column>
+        <h:column>
+            <h:commandButton value="Excluir" action="#{setorMB.excluir(setor)}"/>
+        </h:column>
+    </h:dataTable>
+</h:body>
+</html>

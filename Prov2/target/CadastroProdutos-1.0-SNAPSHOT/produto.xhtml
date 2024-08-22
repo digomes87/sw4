@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Cadastro de Produtos</title>
+</h:head>
+
+<h:body>
+    <!-- Formulário principal para cadastro de produtos -->
+    <h:form>
+        <!-- Exibe mensagens de erro ou validação -->
+        <h:messages globalOnly="true" style="color:red"/>
+
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Nome:" />
+            <h:inputText value="#{produtoMB.produto.nome}" />
+
+            <h:outputLabel value="Custo:" />
+            <h:inputText value="#{produtoMB.produto.custo}" />
+
+            <h:outputLabel value="Estoque Mínimo:" />
+            <h:inputText value="#{produtoMB.produto.estoqueMinimo}" />
+
+            <h:outputLabel value="Setor:" />
+            <h:selectOneMenu value="#{produtoMB.produto.setor}">
+                <f:selectItems value="#{produtoMB.setores}" var="setor" itemLabel="#{setor.nome}" itemValue="#{setor}" />
+            </h:selectOneMenu>
+
+            <!-- Botão para salvar o produto -->
+            <h:commandButton value="Salvar" action="#{produtoMB.salvar}" />
+        </h:panelGrid>
+    </h:form>
+
+    <!-- Tabela para exibição dos produtos cadastrados -->
+    <h:dataTable value="#{produtoMB.produtos}" var="produto">
+        <h:column>
+            <f:facet name="header">Nome</f:facet>
+            #{produto.nome}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Custo</f:facet>
+            #{produto.custo}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Estoque Mínimo</f:facet>
+            #{produto.estoqueMinimo}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Setor</f:facet>
+            #{produto.setor.nome}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Valor de Venda</f:facet>
+            #{produto.calcularValorVenda()}
+        </h:column>
+        <h:column>
+            <h:commandButton value="Excluir" action="#{produtoMB.excluir(produto)}" />
+        </h:column>
+    </h:dataTable>
+</h:body>
+</html>

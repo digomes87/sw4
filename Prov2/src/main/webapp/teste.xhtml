@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Teste ProdutoMB</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel for="descricao" value="Descrição:" />
+            <h:inputText id="descricao" value="#{produtoMB.produto.descricao}" />
+
+            <h:outputLabel for="atribuicao" value="Atribuição:" />
+            <h:inputTextarea id="atribuicao" value="#{produtoMB.produto.atribuicao}" />
+
+            <h:outputLabel for="setor" value="Setor:" />
+            <h:selectOneMenu id="setor" value="#{produtoMB.produto.setor}" converter="#{setorConverter}">
+                <f:selectItems value="#{produtoMB.setores}" />
+            </h:selectOneMenu>
+
+            <h:commandButton value="Salvar" action="#{produtoMB.salvar}" />
+        </h:panelGrid>
+    </h:form>
+
+    <h:dataTable value="#{produtoMB.produtos}" var="produto">
+        <h:column>
+            <f:facet name="header">Descrição</f:facet>
+            #{produto.descricao}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Atribuição</f:facet>
+            #{produto.atribuicao}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Setor</f:facet>
+            #{produto.setor.nome}
+        </h:column>
+    </h:dataTable>
+
+</h:body>
+</html>
